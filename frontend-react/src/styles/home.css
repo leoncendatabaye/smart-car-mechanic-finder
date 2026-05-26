@@ -1,0 +1,74 @@
+/* Navbar */
+.navbar { background: white; border-bottom: 1px solid #e0e6ef; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.nav-brand { font-weight: 700; color: #1f4fd6; font-size: 1rem; }
+.nav-right { display: flex; gap: 10px; align-items: center; font-size: 0.9rem; flex-wrap: wrap; }
+
+/* Language toggle button */
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0f4ff;
+  color: #1f4fd6;
+  border: 1.5px solid #1f4fd6;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.lang-btn:hover {
+  background: #1f4fd6;
+  color: white;
+}
+
+/* Hero */
+.hero h1 { margin: 0; font-size: 2rem; }
+.hero p  { margin-top: 6px; color: #4a5d73; }
+.hero { margin-bottom: 4px; }
+
+/* Panel */
+.panel { margin-top: 20px; background: white; border-radius: 12px; padding: 16px; box-shadow: 0 8px 30px rgba(15,23,42,0.08); }
+.grid  { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 12px; }
+.grid label { display: flex; flex-direction: column; gap: 6px; font-size: 0.95rem; }
+.grid input, .grid select { width: 100%; }
+.actions { margin-top: 12px; display: flex; gap: 10px; }
+
+/* Location */
+.location-hint { margin: 4px 0 8px; font-size: 0.82rem; color: #7a8fa6; }
+.manual-toggle-row { margin-top: 8px; }
+.btn-toggle { font-size: 0.85rem !important; padding: 5px 12px !important; }
+.manual-coords-panel { margin-top: 8px; padding: 12px; background: #f8fafc; border: 1px dashed #b0bec5; border-radius: 8px; }
+.manual-coords-grid { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
+.manual-coords-grid label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; }
+.manual-coords-grid button { background: #1f4fd6; color: white; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; }
+.coord-display { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 8px 12px; background: #eaf3ff; border-radius: 8px; font-size: 0.88rem; color: #1f4fd6; }
+
+/* Layout */
+.layout { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.results { display: grid; gap: 10px; }
+.map-legend { display: flex; gap: 16px; margin-bottom: 8px; font-size: 13px; color: #4a5d73; }
+.map-legend img { height: 16px; vertical-align: middle; }
+
+/* Cards */
+.card { background: white; border-radius: 10px; padding: 12px; box-shadow: 0 6px 18px rgba(2,6,23,0.07); }
+.rank { font-weight: 700; margin-bottom: 4px; }
+
+/* Buttons on cards */
+.focus-map-btn { background: #1f4fd6 !important; color: white; border: none; padding: 9px 14px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; flex: 1; }
+.request-btn   { background: #16a085 !important; color: white; border: none; padding: 9px 14px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
+.rate-btn      { background: #f39c12 !important; color: white; border: none; padding: 9px 14px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; width: 100%; }
+
+/* Status trackers */
+.status-pending   { background:#fff8e1; border:1.5px solid #f0c040; color:#7a5c00; padding:10px 12px; border-radius:8px; font-size:0.88rem; margin-top:8px; }
+.status-accepted  { background:#e8f8f0; border:1.5px solid #27ae60; color:#1a6e3c; padding:10px 12px; border-radius:8px; font-size:0.88rem; margin-top:8px; }
+.status-declined  { background:#fdecea; border:1.5px solid #e74c3c; color:#922b21; padding:10px 12px; border-radius:8px; font-size:0.88rem; margin-top:8px; }
+.status-completed { background:#eaf3ff; border:1.5px solid #2980b9; color:#1a5276; padding:10px 12px; border-radius:8px; font-size:0.88rem; margin-top:8px; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .manual-coords-grid { grid-template-columns: 1fr 1fr; }
+  .manual-coords-grid button { grid-column: 1 / -1; }
+}

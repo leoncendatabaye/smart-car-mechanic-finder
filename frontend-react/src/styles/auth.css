@@ -1,0 +1,19 @@
+.auth-wrap { max-width: 440px; margin: 60px auto; padding: 0 16px; }
+.auth-box { background: white; border-radius: 14px; padding: 32px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.auth-box h2 { margin: 0 0 6px; }
+.auth-box > p { color: #4a5d73; margin: 0 0 20px; font-size: 0.9rem; }
+.auth-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; font-size: 0.95rem; }
+.auth-field input, .auth-field select { width: 100%; }
+.auth-btn { width: 100%; padding: 12px; background: #1f4fd6; color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 4px; }
+.auth-btn:hover { background: #1a3fb0; }
+.auth-btn:disabled { opacity: 0.6; }
+.auth-error { color: #c0392b; font-size: 0.88rem; min-height: 18px; margin-top: 8px; }
+.auth-links { margin-top: 18px; font-size: 0.88rem; color: #4a5d73; text-align: center; line-height: 1.8; }
+.divider { text-align: center; color: #aaa; margin: 14px 0; font-size: 0.85rem; }
+.garage-btn { width: 100%; padding: 11px; background: #16a085; color: white; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+.notice { background: #fff8e1; border: 1px solid #f0c040; border-radius: 8px; padding: 12px; font-size: 0.88rem; color: #7a5c00; margin-bottom: 20px; }
+.garage-preview { background: #f4f6f9; border-radius: 8px; padding: 10px 14px; font-size: 0.88rem; color: #4a5d73; margin-top: 6px; }
+.search-results { border: 1px solid #d0d7e2; border-radius: 8px; max-height: 220px; overflow-y: auto; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 4px; }
+.search-result-item { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+.search-result-item:hover { background: #eaf3ff; }
+.district-tag { font-size: 0.78rem; color: #7a8fa6; margin-left: 6px; }

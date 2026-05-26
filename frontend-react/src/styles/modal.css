@@ -1,0 +1,13 @@
+.modal-overlay { position:fixed; inset:0; background:rgba(10,20,40,0.55); display:flex; align-items:center; justify-content:center; z-index:9999; padding:16px; }
+.modal-box { background:white; border-radius:14px; padding:24px; width:100%; max-width:520px; box-shadow:0 20px 60px rgba(0,0,0,0.25); max-height:90vh; overflow-y:auto; }
+.modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.modal-header h3 { margin:0; font-size:1.2rem; }
+.modal-close { background:transparent !important; color:#4a5d73 !important; border:none !important; font-size:1.1rem; cursor:pointer; padding:4px 8px !important; }
+.modal-garage-label { font-size:0.9rem; color:#4a5d73; margin:0 0 14px; }
+.modal-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.modal-grid label { display:flex; flex-direction:column; gap:6px; font-size:0.9rem; }
+.modal-grid input, .modal-grid select { width:100%; }
+.modal-actions { display:flex; gap:10px; margin-top:14px; }
+.modal-actions button:first-child { background:#1f4fd6; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600; }
+.required { color:#c0392b; }
+@media (max-width:500px) { .modal-grid { grid-template-columns:1fr; } }
