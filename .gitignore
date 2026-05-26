@@ -16,9 +16,6 @@ venv/
 .venv/
 env/
 
-# Database (regenerated on server)
-data/requests.db
-
 # IDE
 .vscode/
 .idea/
