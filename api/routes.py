@@ -25,6 +25,15 @@ SECRET  = "smf-jwt-secret-2025"   # change in production
 init_db()
 
 
+# ── Background email helper ───────────────────────────────────────────────────
+import threading
+
+def send_email_async(fn, *args, **kwargs):
+    """Run any email function in a background thread so it never blocks the API."""
+    t = threading.Thread(target=fn, args=args, kwargs=kwargs, daemon=True)
+    t.start()
+
+
 # ── JWT helpers ───────────────────────────────────────────────────────────────
 
 def make_token(payload: dict, expires_hours: int = 24) -> str:
@@ -196,7 +205,7 @@ def user_register():
                     conn.execute("UPDATE users SET email=? WHERE id=?",
                                  (payload["email"].strip().lower(), user["id"]))
                     conn.commit()
-                email_welcome_user(payload["email"].strip(), payload["name"])
+                send_email_async(email_welcome_user, payload["email"].strip(), payload["name"])
             except Exception: pass
         return jsonify({"success": True, "token": token, "user": user}), 201
     except ValueError as e:
@@ -243,7 +252,7 @@ def garage_register():
         if payload.get("email", "").strip():
             try:
                 from api.email_service import email_garage_registered
-                email_garage_registered(payload["email"].strip(), payload["garage_name"])
+                send_email_async(email_garage_registered, payload["email"].strip(), payload["garage_name"])
             except Exception: pass
         return jsonify({
             "success": True,
@@ -304,7 +313,7 @@ def admin_update_garage(garage_id: int):
     if status == "verified" and garage and garage.get("email"):
         try:
             from api.email_service import email_garage_verified
-            email_garage_verified(garage["email"], garage["garage_name"])
+            send_email_async(email_garage_verified, garage["email"], garage["garage_name"])
         except Exception: pass
     return jsonify({"success": True, "garage": garage})
 
@@ -402,7 +411,8 @@ def send_request():
                 ).fetchone()
                 if row: garage_acc = dict(row)
         if garage_acc and garage_acc.get("email"):
-            email_garage_new_request(
+            send_email_async(
+                email_garage_new_request,
                 garage_email = garage_acc["email"],
                 garage_name  = payload["garage_name"],
                 user_name    = payload.get("user_name", "Customer"),
@@ -474,7 +484,7 @@ def update_status(request_id: int):
             if user_id:
                 user = get_user_by_id(user_id)
                 if user and user.get("email"):
-                    email_user_status(user["email"], user["name"], garage_name, problem_type, status)
+                    send_email_async(email_user_status, user["email"], user["name"], garage_name, problem_type, status)
         except Exception as e:
             import logging
             logging.getLogger(__name__).warning(f"Notification failed: {e}")
