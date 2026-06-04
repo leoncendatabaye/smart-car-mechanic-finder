@@ -205,8 +205,11 @@ def user_register():
                     conn.execute("UPDATE users SET email=? WHERE id=?",
                                  (payload["email"].strip().lower(), user["id"]))
                     conn.commit()
+                user["email"] = payload["email"].strip().lower()
                 send_email_async(email_welcome_user, payload["email"].strip(), payload["name"])
-            except Exception: pass
+            except Exception as e:
+                import logging
+                logging.getLogger(__name__).warning(f"Welcome email failed: {e}")
         return jsonify({"success": True, "token": token, "user": user}), 201
     except ValueError as e:
         return jsonify({"error": str(e)}), 409
@@ -481,10 +484,23 @@ def update_status(request_id: int):
 
             # Email — look up user email from users table
             user_id = req.get("user_id")
+            user = None
             if user_id:
                 user = get_user_by_id(user_id)
-                if user and user.get("email"):
-                    send_email_async(email_user_status, user["email"], user["name"], garage_name, problem_type, status)
+            # Fallback: look up by phone or name if user_id missing
+            if not user and req.get("user_phone"):
+                user = get_user_by_phone(req["user_phone"])
+            if not user and req.get("user_name"):
+                from api.database import get_conn
+                with get_conn() as conn:
+                    row = conn.execute(
+                        "SELECT id, name, phone, email FROM users WHERE LOWER(name)=LOWER(?)",
+                        (req["user_name"],)
+                    ).fetchone()
+                    if row:
+                        user = dict(row)
+            if user and user.get("email"):
+                send_email_async(email_user_status, user["email"], user["name"], garage_name, problem_type, status)
         except Exception as e:
             import logging
             logging.getLogger(__name__).warning(f"Notification failed: {e}")
