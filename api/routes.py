@@ -620,7 +620,7 @@ def admin_stats():
     if csv_path.exists():
         df = pd.read_csv(csv_path)
         csv_garages = len(df)
-        district_counts = df["district"].value_counts().head(8).to_dict()
+        district_counts = df["district"].value_counts().to_dict()
 
     return jsonify({
         "requests": {
