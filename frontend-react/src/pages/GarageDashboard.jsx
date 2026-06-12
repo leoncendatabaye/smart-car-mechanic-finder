@@ -200,7 +200,7 @@ function RequestCard({ req, garage, onUpdate }) {
         </button>
         <a
           className="btn-maps"
-          href={`https://www.google.com/maps?q=${req.user_lat},${req.user_lon}&z=17`}
+          href={`https://www.google.com/maps/dir/?api=1&destination=${req.user_lat},${req.user_lon}&travelmode=driving`}
           target="_blank" rel="noopener"
         >
           {t.customerLoc}
@@ -217,6 +217,7 @@ function RequestCard({ req, garage, onUpdate }) {
           }}>
             <span>🗺️ {garage.garage_name} → {req.user_name}</span>
             <div style={{display:'flex',gap:10,alignItems:'center'}}>
+              {/* Only show navigate button after garage coordinates are loaded */}
               <a href={externalDirUrl} target="_blank" rel="noopener"
                 style={{color:'white',fontSize:'0.8rem',textDecoration:'none',background:'#1a73e8',padding:'3px 10px',borderRadius:5}}>
                 {t.navigateGM}
