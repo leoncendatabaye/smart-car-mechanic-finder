@@ -314,9 +314,11 @@ function InfoContent({ item, rank, userPos }) {
   const mapsUrl = item.google_maps_url && item.google_maps_url !== 'nan'
     ? item.google_maps_url
     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mechanic_name+', Rwanda')}`
+
+  // Use GPS coordinates for both origin (user) and destination (garage) — never garage name
   const dirUrl = userPos
-    ? `https://www.google.com/maps/dir/${userPos.lat},${userPos.lng}/${encodeURIComponent(item.mechanic_name)}`
-    : '#'
+    ? `https://www.google.com/maps/dir/?api=1&origin=${userPos.lat},${userPos.lng}&destination=${item.mechanic_latitude},${item.mechanic_longitude}&travelmode=driving`
+    : `https://www.google.com/maps/dir/?api=1&destination=${item.mechanic_latitude},${item.mechanic_longitude}&travelmode=driving`
   return (
     <div style={{fontFamily:'sans-serif',maxWidth:280,padding:4}}>
       <div style={{fontSize:15,fontWeight:'bold',marginBottom:6,color: rank===1?'#1a6e3c':'#c0392b'}}>
